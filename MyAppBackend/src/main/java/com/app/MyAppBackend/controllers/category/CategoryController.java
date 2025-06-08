@@ -2,17 +2,17 @@ package com.app.MyAppBackend.controllers.category;
 
 import com.app.MyAppBackend.model.entities.Category;
 import com.app.MyAppBackend.services.category.CategoryServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/category")
+@RequiredArgsConstructor
 public class CategoryController {
 
-    @Autowired
-    private CategoryServiceImpl categoryService;
+    private final CategoryServiceImpl categoryService;
 
     @GetMapping
     private List<Category> getAllCategories(){

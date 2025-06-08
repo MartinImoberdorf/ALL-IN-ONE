@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
 public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

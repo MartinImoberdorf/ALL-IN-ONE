@@ -2,7 +2,7 @@ package com.app.MyAppBackend.services.user;
 
 import com.app.MyAppBackend.model.entities.MyUser;
 import com.app.MyAppBackend.repositories.user.MyUserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,9 +12,10 @@ import java.util.Optional;
 
 
 @Service
+@RequiredArgsConstructor
 public class MyUserDetailService implements UserDetailsService {
-    @Autowired
-    private MyUserRepository repository;
+
+    private final MyUserRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
