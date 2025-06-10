@@ -31,7 +31,6 @@ public class SecurityConfiguration {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable) // cross site request forgery
                 .authorizeHttpRequests(registry -> {
-                    //registry.requestMatchers("/home", "/auth/register/user", "/authenticate").permitAll();
                     registry.requestMatchers("/auth/register/user","/auth/login").permitAll();
                     registry.requestMatchers("/admin/**").hasRole("ADMIN");
                     registry.requestMatchers("/user/**").hasRole("USER");

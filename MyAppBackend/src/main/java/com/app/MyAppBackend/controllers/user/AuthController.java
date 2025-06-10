@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.core.Authentication;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -36,13 +39,15 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> authenticateAndGetToken(@RequestBody LoginForm loginForm){
+    public ResponseEntity<?> authenticateAndGetToken(@RequestBody LoginForm loginForm){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginForm.username(), loginForm.password()
         ));
         if(authentication.isAuthenticated()){
             String token = jwtService.generateToken(myUserDetailService.loadUserByUsername(loginForm.username()));
-            return ResponseEntity.ok(token);
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
+            return ResponseEntity.ok(response);
         }else {
             throw new UsernameNotFoundException("Invalid credentials");
         }

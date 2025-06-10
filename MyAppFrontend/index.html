@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ALL IN ONE - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          keyframes: {
+            'fade-in-up': {
+              '0%': { opacity: '0', transform: 'translateY(40px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'pulse-border': {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(255,90,95,0.7)' },
+              '50%': { boxShadow: '0 0 0 12px rgba(255,90,95,0)' },
+            }
+          },
+          animation: {
+            'fade-in-up': 'fade-in-up 0.8s cubic-bezier(.4,0,.2,1) both',
+            'pulse-border': 'pulse-border 2s infinite',
+            'spin-slow': 'spin 8s linear infinite',
+          }
+        },
+      },
+    };
+  </script>
+  <style>
+    /* Extra smooth transition for header */
+    header {
+      transition: box-shadow 0.3s, background 0.3s;
+    }
+    header:hover {
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      background: rgba(255,255,255,0.95);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#fff7f7] via-[#f7faff] to-[#f7f7ff] font-sans flex flex-col">
+
+  <!-- HEADER -->
+  <header class="flex justify-between items-center bg-white/80 backdrop-blur-md rounded-full mt-6 mx-auto px-8 py-3 w-[95%] max-w-4xl shadow border border-gray-100 animate-fade-in-up">
+    <div class="flex items-center space-x-2">
+      <!-- Logo SVG (puedes cambiarlo por el tuyo) -->
+      <span class="font-black text-xl tracking-tight text-[#FF5A5F] transition-colors duration-300 hover:text-black">ALL IN ONE</span>
+    </div>
+    <nav class="flex items-center space-x-6 text-gray-700 text-base font-medium">
+        <a href="login.html" class="hover:text-[#FF5A5F] transition-colors duration-200">Log in</a>
+        <a href="signup.html" class="hover:text-[#FF5A5F] transition-colors duration-200">Sign up</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex flex-col items-center justify-center flex-grow px-4 pt-8">
+    <!-- Logo central (puedes cambiar el SVG por el tuyo) -->
+    <div class="mt-8 mb-6 animate-fade-in-up" style="animation-delay:0.2s;animation-fill-mode:both;">
+      <div class="mx-auto w-24 h-24 rounded-2xl shadow-lg flex items-center justify-center bg-[#FF5A5F] animate-pulse-border relative">
+        <!-- Ejemplo: Logo Airbnb SVG, reemplaza por el tuyo si quieres -->
+        <svg viewBox="0 0 64 64" width="56" height="56" fill="none" class="animate-spin-slow absolute inset-0 m-auto opacity-10 pointer-events-none">
+          <circle cx="32" cy="32" r="28" stroke="#fff" stroke-width="4" fill="none"/>
+        </svg>
+        <svg viewBox="0 0 64 64" width="48" height="48" fill="none" class="relative z-10">
+          <path d="M32 12C27 22 16 41 16 48a16 16 0 0032 0c0-7-11-26-16-36z" stroke="#fff" stroke-width="4" fill="none"/>
+          <circle cx="32" cy="48" r="6" fill="#fff"/>
+        </svg>
+      </div>
+    </div>
+    <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 text-center leading-tight mb-4 animate-fade-in-up" style="animation-delay:0.3s;animation-fill-mode:both;">
+      Keep All Your Videos and Links<br class="hidden md:block"/> Ready to Share—Anywhere, Anytime
+    </h1>
+    <p class="text-gray-500 text-lg text-center mb-8 max-w-xl animate-fade-in-up" style="animation-delay:0.4s;animation-fill-mode:both;">
+      Save and organize all your favorite videos and links in one place —<br class="hidden md:block"/> Access your content faster than ever.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 mb-10 animate-fade-in-up" style="animation-delay:0.5s;animation-fill-mode:both;">
+      <a href="signup.html" class="bg-black text-white px-8 py-3 rounded-full font-semibold text-lg shadow hover:bg-[#FF5A5F] hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2">Join for free</a>
+      <!-- <a href="#" class="bg-white border border-gray-300 px-8 py-3 rounded-full font-semibold text-lg shadow hover:bg-gray-100 hover:border-[#FF5A5F] hover:text-[#FF5A5F] hover:scale-105 transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2">
+        See our plans
+        <svg class="ml-2 w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </a> -->
+    </div>
+  </main>
+  
+</body>
+</html>
