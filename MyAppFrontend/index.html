@@ -6,40 +6,7 @@
   <title>ALL IN ONE - Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          keyframes: {
-            'fade-in-up': {
-              '0%': { opacity: '0', transform: 'translateY(40px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            'pulse-border': {
-              '0%, 100%': { boxShadow: '0 0 0 0 rgba(255,90,95,0.7)' },
-              '50%': { boxShadow: '0 0 0 12px rgba(255,90,95,0)' },
-            }
-          },
-          animation: {
-            'fade-in-up': 'fade-in-up 0.8s cubic-bezier(.4,0,.2,1) both',
-            'pulse-border': 'pulse-border 2s infinite',
-            'spin-slow': 'spin 8s linear infinite',
-          }
-        },
-      },
-    };
-  </script>
-  <style>
-    /* Extra smooth transition for header */
-    header {
-      transition: box-shadow 0.3s, background 0.3s;
-    }
-    header:hover {
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-      background: rgba(255,255,255,0.95);
-    }
-  </style>
+  <link rel="stylesheet" href="css/styleIndex.css">
 </head>
 <body class="min-h-screen bg-gradient-to-br from-[#fff7f7] via-[#f7faff] to-[#f7f7ff] font-sans flex flex-col">
 
@@ -80,6 +47,6 @@
       <!-- ...existing code... -->
     </div>
   </main>
-  
+  <script src="js/scriptIndex.js"></script>
 </body>
 </html>
