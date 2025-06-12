@@ -1,4 +1,4 @@
-package com.app.MyAppBackend.controllers.user;
+package com.app.MyAppBackend.controllers.login;
 
 import com.app.MyAppBackend.model.entities.MyUser;
 import com.app.MyAppBackend.model.records.LoginForm;
@@ -6,16 +6,14 @@ import com.app.MyAppBackend.repositories.user.MyUserRepository;
 import com.app.MyAppBackend.security.jwt.JwtService;
 import com.app.MyAppBackend.services.user.MyUserDetailService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
 import java.util.HashMap;
@@ -33,9 +31,14 @@ public class AuthController {
     private final MyUserDetailService myUserDetailService;
 
     @PostMapping("/register/user")
-    public MyUser createUser(@RequestBody MyUser user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return myUserRepository.save(user);
+    public ResponseEntity<?> createUser(@RequestBody MyUser user) {
+        try {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            MyUser savedUser = myUserRepository.save(user);
+            return ResponseEntity.ok(savedUser);
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.badRequest().body("Username already exists");
+        }
     }
 
     @PostMapping("/login")
@@ -46,12 +49,23 @@ public class AuthController {
         if(authentication.isAuthenticated()){
             String token = jwtService.generateToken(myUserDetailService.loadUserByUsername(loginForm.username()));
             Map<String, String> response = new HashMap<>();
-            response.put("token", token);
-            return ResponseEntity.ok(response);
+            return ResponseEntity.ok(Map.of("token", token));
+
         }else {
             throw new UsernameNotFoundException("Invalid credentials");
         }
     }
+
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @GetMapping("/currentUser")
+    public ResponseEntity<?> getCurrentUser(Authentication authentication) {
+        String username = authentication.getName();
+        MyUser user = myUserRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        return ResponseEntity.ok(user.getUsername());
+    }
+
 
 
 

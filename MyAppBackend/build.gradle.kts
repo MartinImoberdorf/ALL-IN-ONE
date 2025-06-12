@@ -33,6 +33,9 @@ dependencies {
 	implementation ("io.jsonwebtoken:jjwt-impl:0.12.5")
 	implementation ("io.jsonwebtoken:jjwt-jackson:0.12.5")
 
+	implementation ("jakarta.validation:jakarta.validation-api:3.0.2") // VALIDACIONES ENTITYS
+	implementation ("org.hibernate.validator:hibernate-validator:8.0.0.Final")
+
 	runtimeOnly("org.postgresql:postgresql")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")

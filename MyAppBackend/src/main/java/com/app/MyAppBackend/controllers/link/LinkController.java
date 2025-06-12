@@ -1,6 +1,6 @@
 package com.app.MyAppBackend.controllers.link;
 
-import com.app.MyAppBackend.model.dtos.addLinkDto;
+import com.app.MyAppBackend.model.dtos.LinkDto;
 import com.app.MyAppBackend.model.entities.Link;
 import com.app.MyAppBackend.services.link.LinkServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -18,19 +18,26 @@ public class LinkController {
 
     private final LinkServiceImpl enlaceService;
 
+    // get all links
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping
-    private List<Link> getAllEnlaces(){
-        return enlaceService.getAllEnlaces();
+    private List<LinkDto> getAllLinks(){
+        return enlaceService.getAllLinks();
+    }
+
+    // add link
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PostMapping
+    public ResponseEntity<LinkDto> addLink(@RequestBody Link link) {
+       LinkDto LinkDto = enlaceService.addLink(link);
+        return ResponseEntity.status(HttpStatus.CREATED).body(LinkDto);
     }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @PostMapping
-    public ResponseEntity<addLinkDto> addEnlace(@RequestBody Link link) {
-       addLinkDto addLinkDto = enlaceService.addEnlace(link);
-        return ResponseEntity.status(HttpStatus.CREATED).body(addLinkDto);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<LinkDto> removeLink(@PathVariable Long id) {
+        LinkDto deletedLink = enlaceService.removeLink(id);
+        return ResponseEntity.ok(deletedLink);
     }
-
-
 
 }

@@ -9,8 +9,8 @@ import lombok.Data;
 public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
+    private String title;
     private String link;
     private String description;
     @ManyToOne

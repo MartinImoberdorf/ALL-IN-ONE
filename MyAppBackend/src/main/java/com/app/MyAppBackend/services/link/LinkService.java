@@ -1,11 +1,12 @@
 package com.app.MyAppBackend.services.link;
 
-import com.app.MyAppBackend.model.dtos.addLinkDto;
+import com.app.MyAppBackend.model.dtos.LinkDto;
 import com.app.MyAppBackend.model.entities.Link;
 
 import java.util.List;
 
 public interface LinkService {
-    public List<Link> getAllEnlaces();
-    public addLinkDto addEnlace(Link link);
+    public List<LinkDto> getAllLinks();
+    public LinkDto addLink(Link link);
+    public LinkDto removeLink(Long id);
 }
