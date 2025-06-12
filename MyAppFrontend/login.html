@@ -58,8 +58,16 @@
             d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-6 0h6" />
         </svg>
       </a>
-      <a href="login.html" class="hover:text-[#FF5A5F] transition-colors duration-200">Log in</a>
-      <a href="signup.html" class="hover:text-[#FF5A5F] transition-colors duration-200">Sign up</a>
+    <nav class="flex items-center space-x-4 text-gray-700 text-base font-medium">
+      <a href="login.html"
+        class="px-5 py-2 rounded-full border border-transparent bg-white/70 shadow-sm hover:bg-[#FF5A5F] hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        Log in
+      </a>
+      <a href="signup.html"
+        class="px-5 py-2 rounded-full border border-[#FF5A5F] bg-[#FF5A5F] text-white shadow-sm hover:bg-white hover:text-[#FF5A5F] hover:border-[#FF5A5F] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        Sign up
+      </a>
+    </nav>
     </nav>
   </header>
 
@@ -113,41 +121,50 @@
   </footer>
 
   <!-- LOGIN SCRIPT -->
-  <script>
-    const loginForm = document.getElementById('loginForm');
-    const status = document.getElementById('loginStatus');
+<!-- LOGIN SCRIPT -->
+<script>
+  
+  const loginForm = document.getElementById('loginForm');
+  const status = document.getElementById('loginStatus');
 
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-      try {
-        const res = await fetch('http://localhost:8080/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username, password }),
-        });
+    try {
+      const res = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
 
-        if (!res.ok) {
-          throw new Error('Invalid credentials');
-        }
+      if (!res.ok) {
+        throw new Error('Invalid credentials');
+      }
 
-        const data = await res.json();
+      const data = await res.json();
+      // Guarda el token JWT en memoria (sessionStorage)
+      if (data.token) {
+        sessionStorage.setItem('jwt', data.token);
         status.textContent = 'Login successful';
         status.classList.remove('text-red-500');
         status.classList.add('text-green-600');
-        // Redirect or show something else...
-      } catch (err) {
-        status.textContent = err.message;
-        status.classList.remove('text-green-600');
-        status.classList.add('text-red-500');
+        // Redirige pasando el token por query string
+        window.location.href = "userHome.html";
+      } else {
+        throw new Error('No token received');
       }
-    });
-  </script>
+    } catch (err) {
+      status.textContent = err.message;
+      status.classList.remove('text-green-600');
+      status.classList.add('text-red-500');
+    }
+  });
+</script>
 
 </body>
 </html>

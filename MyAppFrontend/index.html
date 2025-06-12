@@ -49,25 +49,24 @@
       <!-- Logo SVG (puedes cambiarlo por el tuyo) -->
       <span class="font-black text-xl tracking-tight text-[#FF5A5F] transition-colors duration-300 hover:text-black">ALL IN ONE</span>
     </div>
-    <nav class="flex items-center space-x-6 text-gray-700 text-base font-medium">
-        <a href="login.html" class="hover:text-[#FF5A5F] transition-colors duration-200">Log in</a>
-        <a href="signup.html" class="hover:text-[#FF5A5F] transition-colors duration-200">Sign up</a>
+    <nav class="flex items-center space-x-4 text-gray-700 text-base font-medium">
+      <a href="login.html"
+        class="px-5 py-2 rounded-full border border-transparent bg-white/70 shadow-sm hover:bg-[#FF5A5F] hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        Log in
+      </a>
+      <a href="signup.html"
+        class="px-5 py-2 rounded-full border border-[#FF5A5F] bg-[#FF5A5F] text-white shadow-sm hover:bg-white hover:text-[#FF5A5F] hover:border-[#FF5A5F] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        Sign up
+      </a>
     </nav>
   </header>
 
   <!-- MAIN CONTENT -->
   <main class="flex flex-col items-center justify-center flex-grow px-4 pt-8">
-    <!-- Logo central (puedes cambiar el SVG por el tuyo) -->
+    <!-- Logo central (ahora usando tu imagen) -->
     <div class="mt-8 mb-6 animate-fade-in-up" style="animation-delay:0.2s;animation-fill-mode:both;">
-      <div class="mx-auto w-24 h-24 rounded-2xl shadow-lg flex items-center justify-center bg-[#FF5A5F] animate-pulse-border relative">
-        <!-- Ejemplo: Logo Airbnb SVG, reemplaza por el tuyo si quieres -->
-        <svg viewBox="0 0 64 64" width="56" height="56" fill="none" class="animate-spin-slow absolute inset-0 m-auto opacity-10 pointer-events-none">
-          <circle cx="32" cy="32" r="28" stroke="#fff" stroke-width="4" fill="none"/>
-        </svg>
-        <svg viewBox="0 0 64 64" width="48" height="48" fill="none" class="relative z-10">
-          <path d="M32 12C27 22 16 41 16 48a16 16 0 0032 0c0-7-11-26-16-36z" stroke="#fff" stroke-width="4" fill="none"/>
-          <circle cx="32" cy="48" r="6" fill="#fff"/>
-        </svg>
+      <div class="mx-auto w-24 h-24 rounded-2xl shadow-lg flex items-center justify-center bg-[#FF5A5F] animate-pulse-border relative overflow-hidden">
+        <img src="Imgs/Logo.png" alt="Logo" class="w-20 h-20 object-contain z-10" />
       </div>
     </div>
     <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 text-center leading-tight mb-4 animate-fade-in-up" style="animation-delay:0.3s;animation-fill-mode:both;">
@@ -78,12 +77,7 @@
     </p>
     <div class="flex flex-col sm:flex-row gap-4 mb-10 animate-fade-in-up" style="animation-delay:0.5s;animation-fill-mode:both;">
       <a href="signup.html" class="bg-black text-white px-8 py-3 rounded-full font-semibold text-lg shadow hover:bg-[#FF5A5F] hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2">Join for free</a>
-      <!-- <a href="#" class="bg-white border border-gray-300 px-8 py-3 rounded-full font-semibold text-lg shadow hover:bg-gray-100 hover:border-[#FF5A5F] hover:text-[#FF5A5F] hover:scale-105 transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2">
-        See our plans
-        <svg class="ml-2 w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-        </svg>
-      </a> -->
+      <!-- ...existing code... -->
     </div>
   </main>
   
