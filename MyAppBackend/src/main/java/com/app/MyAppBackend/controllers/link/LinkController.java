@@ -20,7 +20,7 @@ public class LinkController {
 
     // get all links
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    @GetMapping
+    @GetMapping("/all")
     private List<LinkDto> getAllLinks(){
         return enlaceService.getAllLinks();
     }
@@ -39,5 +39,12 @@ public class LinkController {
         LinkDto deletedLink = enlaceService.removeLink(id);
         return ResponseEntity.ok(deletedLink);
     }
+
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @GetMapping()
+    private List<LinkDto> getLinksActualUser(){
+        return enlaceService.getLinksActualUser();
+    }
+
 
 }

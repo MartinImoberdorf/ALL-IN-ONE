@@ -74,40 +74,8 @@
       Here are your saved links and videos. Manage, organize, and share them easily!
     </p>
     <!-- Responsive user content grid -->
-    <div class="w-full max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 animate-fade-in-up" style="animation-delay:0.5s;animation-fill-mode:both;">
-      <!-- Example Card -->
-      <div class="bg-white/90 rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col gap-2 hover:scale-[1.03] hover:shadow-xl transition-all duration-200 border border-gray-100">
-        <div class="flex items-center gap-2">
-          <span class="inline-block w-3 h-3 rounded-full bg-[#FF5A5F]"></span>
-          <span class="font-semibold text-gray-800 text-sm sm:text-base">YouTube Video</span>
-        </div>
-        <a href="https://youtube.com" target="_blank" class="text-[#FF5A5F] font-medium hover:underline break-all text-sm sm:text-base">https://youtube.com/yourvideo</a>
-        <p class="text-gray-500 text-xs sm:text-sm">Tutorial sobre React</p>
-      </div>
-      <div class="bg-white/90 rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col gap-2 hover:scale-[1.03] hover:shadow-xl transition-all duration-200 border border-gray-100">
-        <div class="flex items-center gap-2">
-          <span class="inline-block w-3 h-3 rounded-full bg-[#FF5A5F]"></span>
-          <span class="font-semibold text-gray-800 text-sm sm:text-base">Google Drive</span>
-        </div>
-        <a href="https://drive.google.com" target="_blank" class="text-[#FF5A5F] font-medium hover:underline break-all text-sm sm:text-base">https://drive.google.com/yourfile</a>
-        <p class="text-gray-500 text-xs sm:text-sm">Apuntes de clase</p>
-      </div>
-      <div class="bg-white/90 rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col gap-2 hover:scale-[1.03] hover:shadow-xl transition-all duration-200 border border-gray-100">
-        <div class="flex items-center gap-2">
-          <span class="inline-block w-3 h-3 rounded-full bg-[#FF5A5F]"></span>
-          <span class="font-semibold text-gray-800 text-sm sm:text-base">GitHub Repo</span>
-        </div>
-        <a href="https://github.com" target="_blank" class="text-[#FF5A5F] font-medium hover:underline break-all text-sm sm:text-base">https://github.com/yourrepo</a>
-        <p class="text-gray-500 text-xs sm:text-sm">Proyecto personal</p>
-      </div>
-      <div class="bg-white/90 rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col gap-2 hover:scale-[1.03] hover:shadow-xl transition-all duration-200 border border-gray-100">
-        <div class="flex items-center gap-2">
-          <span class="inline-block w-3 h-3 rounded-full bg-[#FF5A5F]"></span>
-          <span class="font-semibold text-gray-800 text-sm sm:text-base">Custom Link</span>
-        </div>
-        <a href="https://example.com" target="_blank" class="text-[#FF5A5F] font-medium hover:underline break-all text-sm sm:text-base">https://example.com/yourlink</a>
-        <p class="text-gray-500 text-xs sm:text-sm">Otro recurso útil</p>
-      </div>
+    <div id="linksContainer" class="w-full max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 animate-fade-in-up" style="animation-delay:0.5s;animation-fill-mode:both;">
+      <!-- Las tarjetas se insertarán aquí dinámicamente -->
     </div>
     <!-- Add new link button -->
     <div class="mt-8 sm:mt-10 animate-fade-in-up" style="animation-delay:0.6s;animation-fill-mode:both;">
@@ -124,6 +92,18 @@
   <footer class="bg-white/80 text-center text-xs sm:text-sm text-gray-500 py-4 shadow-inner mt-8">
     © 2025 <span class="font-semibold text-[#FF5A5F]">ALL IN ONE</span>. All rights reserved.
   </footer>
+
+  <div id="customConfirmModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
+    <div class="bg-white rounded-2xl shadow-xl p-6 max-w-xs w-full text-center">
+      <h2 class="text-lg font-semibold mb-2 text-gray-800">¿Eliminar link?</h2>
+      <p class="text-gray-500 mb-4 text-sm">¿Seguro que deseas eliminar este link?</p>
+      <div class="flex justify-center gap-4">
+        <button id="confirmDeleteBtn" class="bg-[#FF5A5F] text-white px-4 py-2 rounded-full font-semibold hover:bg-black transition-all">Eliminar</button>
+        <button id="cancelDeleteBtn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-gray-300 transition-all">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
 
     // SEGURIDAD POR PAGINA
@@ -165,6 +145,7 @@
       } catch (e) {
         document.getElementById('username').textContent = "User!";
       }
+      loadLinks(); // Cargar links al iniciar
     });
   
     // LOGOUT
@@ -173,7 +154,80 @@
       sessionStorage.removeItem('jwt');
       window.location.href = "index.html";
     });
+
+  // Modal de confirmación personalizado
+  let modal = document.getElementById('customConfirmModal');
+  let confirmBtn = null;
+  let cancelBtn = null;
+  let onConfirmDelete = null;
+
+  function showCustomConfirm(onConfirm) {
+    modal.classList.remove('hidden');
+    onConfirmDelete = onConfirm;
+    if (!confirmBtn) confirmBtn = document.getElementById('confirmDeleteBtn');
+    if (!cancelBtn) cancelBtn = document.getElementById('cancelDeleteBtn');
+    confirmBtn.onclick = () => {
+      modal.classList.add('hidden');
+      if (onConfirmDelete) onConfirmDelete();
+    };
+    cancelBtn.onclick = () => {
+      modal.classList.add('hidden');
+    };
+  }
     
+  // CARGAR LINKS DEL BACKEND
+  async function loadLinks() {
+    const jwt = sessionStorage.getItem('jwt');
+    if (!jwt) return;
+    try {
+      const res = await fetch('http://localhost:8080/link', {
+        headers: { 'Authorization': `Bearer ${jwt}` }
+      });
+      if (!res.ok) throw new Error("No se pudieron obtener los links");
+      const links = await res.json();
+      const container = document.getElementById('linksContainer');
+      container.innerHTML = ""; // Limpiar contenido previo
+      links.forEach(link => {
+        const card = document.createElement('div');
+        card.className = "relative bg-white/90 rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col gap-2 hover:scale-[1.03] hover:shadow-xl transition-all duration-200 border border-gray-100";
+        card.innerHTML = `
+          <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 text-lg font-bold focus:outline-none" title="Eliminar" aria-label="Eliminar">
+            &times;
+          </button>
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-3 h-3 rounded-full bg-[#FF5A5F]"></span>
+            <span class="font-semibold text-gray-800 text-sm sm:text-base">${link.description ? link.description : ''}</span>
+          </div>
+          <a href="${link.link}" target="_blank" class="text-[#FF5A5F] font-medium hover:underline break-all text-sm sm:text-base">${link.link}</a>
+          <p class="text-gray-500 text-xs sm:text-sm">${link.categoryName ? link.categoryName : 'Link'}</p>
+        `;
+        // Botón de eliminar
+        const deleteBtn = card.querySelector('button');
+        deleteBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          showCustomConfirm(async () => {
+            try {
+              const jwt = sessionStorage.getItem('jwt');
+              const res = await fetch(`http://localhost:8080/link/${link.id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${jwt}` }
+              });
+              if (res.ok) {
+                card.remove();
+              } else {
+                alert('No se pudo eliminar el link.');
+              }
+            } catch {
+              alert('Error al eliminar el link.');
+            }
+          });
+        });
+        container.appendChild(card);
+      });
+    } catch (e) {
+      // Puedes mostrar un mensaje de error si lo deseas
+    }
+  }
   </script>
 </body>
 </html>

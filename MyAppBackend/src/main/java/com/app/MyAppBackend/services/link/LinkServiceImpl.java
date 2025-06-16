@@ -77,4 +77,22 @@ public class LinkServiceImpl implements LinkService {
         return dto;
     }
 
+    @Override
+    public List<LinkDto> getLinksActualUser(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        MyUser myUser = myUserRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        return linkRepository.findByMyUser(myUser).stream().map(link -> {
+            LinkDto dto = new LinkDto();
+            dto.setId(link.getId());
+            dto.setTitle(link.getTitle());
+            dto.setLink(link.getLink());
+            dto.setDescription(link.getDescription());
+            dto.setCategoryName(link.getCategory().getName());
+            dto.setUsername(link.getMyUser().getUsername());
+            return dto;
+        }).toList();
+    }
+
 }

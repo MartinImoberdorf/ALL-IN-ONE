@@ -9,4 +9,5 @@ public interface LinkService {
     public List<LinkDto> getAllLinks();
     public LinkDto addLink(Link link);
     public LinkDto removeLink(Long id);
+    public List<LinkDto> getLinksActualUser();
 }
