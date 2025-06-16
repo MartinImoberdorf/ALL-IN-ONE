@@ -1,5 +1,6 @@
 package com.app.MyAppBackend.controllers.login;
 
+import com.app.MyAppBackend.model.dtos.RegisterUserDto;
 import com.app.MyAppBackend.model.entities.MyUser;
 import com.app.MyAppBackend.model.records.LoginForm;
 import com.app.MyAppBackend.repositories.user.MyUserRepository;
@@ -31,9 +32,15 @@ public class AuthController {
     private final MyUserDetailService myUserDetailService;
 
     @PostMapping("/register/user")
-    public ResponseEntity<?> createUser(@RequestBody MyUser user) {
+    public ResponseEntity<?> createUser(@RequestBody RegisterUserDto userDto) {
         try {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            // Crear el nuevo usuario
+            MyUser user = new MyUser();
+            user.setUsername(userDto.getUsername());
+            user.setEmail(userDto.getEmail());
+            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+            user.setRole("USER"); // <-- Siempre asignás el rol desde el backend
+
             MyUser savedUser = myUserRepository.save(user);
             return ResponseEntity.ok(savedUser);
         } catch (DataIntegrityViolationException e) {
