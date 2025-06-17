@@ -39,7 +39,7 @@ public class AuthController {
             user.setUsername(userDto.getUsername());
             user.setEmail(userDto.getEmail());
             user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-            user.setRole("USER"); // <-- Siempre asignás el rol desde el backend
+            user.setRole("USER");
 
             MyUser savedUser = myUserRepository.save(user);
             return ResponseEntity.ok(savedUser);

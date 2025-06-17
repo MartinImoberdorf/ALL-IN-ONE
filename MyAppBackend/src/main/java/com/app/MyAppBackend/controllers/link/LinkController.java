@@ -19,7 +19,7 @@ public class LinkController {
     private final LinkServiceImpl enlaceService;
 
     // get all links
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     private List<LinkDto> getAllLinks(){
         return enlaceService.getAllLinks();
