@@ -238,15 +238,28 @@
         const card = document.createElement('div');
         card.className = "relative bg-white/90 rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col gap-2 hover:scale-[1.03] hover:shadow-xl transition-all duration-200 border border-gray-100";
         card.innerHTML = `
-          <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500 text-lg font-bold focus:outline-none" title="Eliminar" aria-label="Eliminar">
+          <button class="absolute top-3 right-3 bg-white/80 border border-gray-200 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 text-xl font-bold shadow-sm focus:outline-none transition-all duration-200 z-10" title="Eliminar" aria-label="Eliminar">
             &times;
           </button>
-          <div class="flex items-center gap-2">
-            <span class="inline-block w-3 h-3 rounded-full bg-[#FF5A5F]"></span>
-            <span class="font-semibold text-gray-800 text-sm sm:text-base">${link.description ? link.description : ''}</span>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF5A5F]/10 border-2 border-[#FF5A5F] shadow-sm">
+              <svg class="w-5 h-5 text-[#FF5A5F]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 3h7v7m0 0L10 21l-7-7 11-11z"/>
+              </svg>
+            </div>
+            <h3 class="flex-1 text-lg sm:text-xl font-extrabold text-gray-900 truncate">${link.title ? link.title : 'Sin título'}</h3>
           </div>
-          <a href="${link.link}" target="_blank" class="text-[#FF5A5F] font-medium hover:underline break-all text-sm sm:text-base">${link.link}</a>
-          <p class="text-gray-500 text-xs sm:text-sm">${link.categoryName ? link.categoryName : 'Link'}</p>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="inline-block bg-[#FF5A5F]/10 text-[#FF5A5F] text-xs font-semibold px-2 py-0.5 rounded-full">${link.categoryName ? link.categoryName : 'Sin categoría'}</span>
+            <span class="font-semibold text-gray-700 text-sm sm:text-base">${link.description ? link.description : ''}</span>
+          </div>
+          <a href="${link.link}" target="_blank"
+            class="inline-flex items-center gap-2 bg-[#FF5A5F] text-white px-4 py-2 rounded-full font-semibold text-sm shadow hover:bg-black hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 mt-1 mb-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 3h7v7m0 0L10 21l-7-7 11-11z"/>
+            </svg>
+            Ir al sitio
+          </a>
         `;
         // Botón de eliminar
         const deleteBtn = card.querySelector('button');
@@ -288,11 +301,6 @@
   }
 
   // add link
-  document.getElementById('addLinkBtn').addEventListener('click', function(e) {
-      e.preventDefault();
-      document.getElementById('modal').style.display = 'flex';
-    });
-
     function closeModal() {
       document.getElementById('modal').style.display = 'none';
     }
