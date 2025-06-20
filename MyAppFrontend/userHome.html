@@ -38,6 +38,33 @@
       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
       background: rgba(255,255,255,0.95);
     }
+
+      /* Ventana modal centrada */
+    .modal-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 2em;
+      border-radius: 8px;
+      min-width: 300px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .modal-content input {
+      display: block;
+      margin-bottom: 1em;
+      width: 100%;
+      padding: 0.5em;
+    }
+    .modal-content button {
+      margin-right: 0.5em;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-gradient-to-br from-[#fff7f7] via-[#f7faff] to-[#f7f7ff] font-sans">
@@ -73,7 +100,8 @@
     </div>
     <!-- Add new link button -->
     <div class="mt-8 sm:mt-10 animate-fade-in-up" style="animation-delay:0.6s;animation-fill-mode:both;">
-      <a href="#" class="inline-flex items-center gap-2 bg-[#FF5A5F] text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-base sm:text-lg shadow hover:bg-black hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2">
+      <a href="#" id="addLinkBtn"
+        class="inline-flex items-center gap-2 bg-[#FF5A5F] text-white px-5 py-2 sm:px-6 sm:py-3 rounded-full font-semibold text-base sm:text-lg shadow hover:bg-black hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
         </svg>
@@ -87,14 +115,38 @@
     © 2025 <span class="font-semibold text-[#FF5A5F]">ALL IN ONE</span>. All rights reserved.
   </footer>
 
-  <div id="customConfirmModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
-    <div class="bg-white rounded-2xl shadow-xl p-6 max-w-xs w-full text-center">
-      <h2 class="text-lg font-semibold mb-2 text-gray-800">¿Eliminar link?</h2>
-      <p class="text-gray-500 mb-4 text-sm">¿Seguro que deseas eliminar este link?</p>
-      <div class="flex justify-center gap-4">
-        <button id="confirmDeleteBtn" class="bg-[#FF5A5F] text-white px-4 py-2 rounded-full font-semibold hover:bg-black transition-all">Eliminar</button>
-        <button id="cancelDeleteBtn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-gray-300 transition-all">Cancelar</button>
+  <!-- Modal de confirmación personalizado -->
+  <div id="customConfirmModal" class="modal-bg hidden">
+    <div class="modal-content text-center">
+      <h2 class="text-lg font-semibold mb-4">¿Eliminar link?</h2>
+      <p class="mb-6 text-gray-600">¿Estás seguro de que deseas eliminar este link?</p>
+      <button id="confirmDeleteBtn" class="bg-[#FF5A5F] text-white px-4 py-2 rounded-full font-semibold mr-2 hover:bg-black transition-all">Eliminar</button>
+      <button id="cancelDeleteBtn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-semibold hover:bg-gray-300 transition-all">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Registrar Link -->
+  <div id="modal" class="modal-bg" style="display:none;">
+    <div class="modal-content text-center max-w-xs sm:max-w-sm w-full">
+      <h2 class="text-xl font-bold mb-4 text-[#FF5A5F]">Agregar Link</h2>
+      <input id="title" autocomplete="off" placeholder="Título" class="mb-3 px-4 py-2 rounded-full border border-gray-200 focus:ring-2 focus:ring-[#FF5A5F] focus:outline-none transition-all" />
+      <input id="link" autocomplete="off" placeholder="Link" class="mb-3 px-4 py-2 rounded-full border border-gray-200 focus:ring-2 focus:ring-[#FF5A5F] focus:outline-none transition-all" />
+      <input id="description" autocomplete="off" placeholder="Descripción" class="mb-3 px-4 py-2 rounded-full border border-gray-200 focus:ring-2 focus:ring-[#FF5A5F] focus:outline-none transition-all" />
+      <input id="category" list="categoryList" autocomplete="off" placeholder="Categoría" class="mb-5 px-4 py-2 rounded-full border border-gray-200 focus:ring-2 focus:ring-[#FF5A5F] focus:outline-none transition-all" />
+      <datalist id="categoryList"></datalist>
+      <div class="flex justify-center gap-2">
+        <button onclick="addLink()" class="bg-[#FF5A5F] text-white px-5 py-2 rounded-full font-semibold hover:bg-black transition-all">Agregar</button>
+        <button onclick="closeModal()" class="bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-semibold hover:bg-gray-300 transition-all">Cancelar</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Modal de notificación personalizado -->
+  <div id="successModal" class="modal-bg hidden">
+    <div class="modal-content text-center max-w-xs sm:max-w-sm w-full">
+      <h2 class="text-xl font-bold mb-4 text-[#22c55e]">¡Link agregado!</h2>
+      <p class="mb-6 text-gray-600">El link se agregó correctamente.</p>
+      <button id="closeSuccessBtn" class="bg-[#FF5A5F] text-white px-5 py-2 rounded-full font-semibold hover:bg-black transition-all">OK</button>
     </div>
   </div>
 
@@ -156,13 +208,13 @@
   let onConfirmDelete = null;
 
   function showCustomConfirm(onConfirm) {
+    const modal = document.getElementById('customConfirmModal');
+    const confirmBtn = document.getElementById('confirmDeleteBtn');
+    const cancelBtn = document.getElementById('cancelDeleteBtn');
     modal.classList.remove('hidden');
-    onConfirmDelete = onConfirm;
-    if (!confirmBtn) confirmBtn = document.getElementById('confirmDeleteBtn');
-    if (!cancelBtn) cancelBtn = document.getElementById('cancelDeleteBtn');
     confirmBtn.onclick = () => {
       modal.classList.add('hidden');
-      if (onConfirmDelete) onConfirmDelete();
+      if (onConfirm) onConfirm();
     };
     cancelBtn.onclick = () => {
       modal.classList.add('hidden');
@@ -181,6 +233,7 @@
       const links = await res.json();
       const container = document.getElementById('linksContainer');
       container.innerHTML = ""; // Limpiar contenido previo
+      //
       links.forEach(link => {
         const card = document.createElement('div');
         card.className = "relative bg-white/90 rounded-2xl shadow-lg p-4 sm:p-6 flex flex-col gap-2 hover:scale-[1.03] hover:shadow-xl transition-all duration-200 border border-gray-100";
@@ -222,6 +275,91 @@
       // Puedes mostrar un mensaje de error si lo deseas
     }
   }
+
+  // registrar correctamente
+  function showSuccessModal() {
+    const modal = document.getElementById('successModal');
+    const btn = document.getElementById('closeSuccessBtn');
+    modal.classList.remove('hidden');
+    btn.onclick = () => {
+      modal.classList.add('hidden');
+      loadLinks(); // Recargar los links después de cerrar el modal
+    };
+  }
+
+  // add link
+  document.getElementById('addLinkBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('modal').style.display = 'flex';
+    });
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    async function addLink() {
+      const jwt = sessionStorage.getItem('jwt');
+      const title = document.getElementById('title').value;
+      const link = document.getElementById('link').value;
+      const description = document.getElementById('description').value;
+      const category = document.getElementById('category').value;
+
+      const body = {
+        title,
+        link,
+        description,
+        category: { name: category }
+      };
+
+      const response = await fetch('http://localhost:8080/link', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${jwt}`
+        },
+        body: JSON.stringify(body)
+      });
+
+      if (response.ok) {
+        closeModal();
+        // Limpiar campos
+        document.getElementById('title').value = '';
+        document.getElementById('link').value = '';
+        document.getElementById('description').value = '';
+        document.getElementById('category').value = '';
+        showSuccessModal();
+      } else {
+        alert('Error al agregar el link');
+      }
+    }
+
+    // cargar categories
+    async function loadCategories() {
+    const jwt = sessionStorage.getItem('jwt');
+    if (!jwt) return;
+    try {
+      const res = await fetch('http://localhost:8080/category/currentUser', {
+        headers: { 'Authorization': `Bearer ${jwt}` }
+      });
+      if (!res.ok) throw new Error("No se pudieron obtener las categorías");
+      const categories = await res.json();
+      const datalist = document.getElementById('categoryList');
+      datalist.innerHTML = '';
+      categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        datalist.appendChild(option);
+      });
+    } catch (e) {
+      // Puedes mostrar un mensaje de error si lo deseas
+    }
+  }
+
+  document.getElementById('addLinkBtn').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('modal').style.display = 'flex';
+    loadCategories(); // Cargar categorías al abrir el modal
+  });
   </script>
 </body>
 </html>

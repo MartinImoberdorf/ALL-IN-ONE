@@ -1,10 +1,7 @@
 package com.app.MyAppBackend.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -15,4 +12,8 @@ public class Category {
     @JsonIgnore
     private Long id;
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private MyUser user;
 }

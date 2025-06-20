@@ -42,8 +42,14 @@ public class LinkServiceImpl implements LinkService {
         MyUser myUser = myUserRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        Category category = categoryRepository.findByName(link.getCategory().getName())
-                .orElseThrow(() -> new IllegalArgumentException("Category not found"));
+        Category category = categoryRepository.findByNameAndUser(link.getCategory().getName(), myUser)
+                .orElseGet(() -> {
+                    // Create and save the category if it does not exist
+                    Category newCategory = new Category();
+                    newCategory.setName(link.getCategory().getName());
+                    newCategory.setUser(myUser);
+                    return categoryRepository.save(newCategory);
+                });
 
         link.setMyUser(myUser);
         link.setCategory(category);
