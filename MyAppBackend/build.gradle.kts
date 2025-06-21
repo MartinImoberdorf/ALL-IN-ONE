@@ -36,6 +36,8 @@ dependencies {
 	implementation ("jakarta.validation:jakarta.validation-api:3.0.2") // VALIDACIONES ENTITYS
 	implementation ("org.hibernate.validator:hibernate-validator:8.0.0.Final")
 
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2") // SWAGGER
+
 	runtimeOnly("org.postgresql:postgresql")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")

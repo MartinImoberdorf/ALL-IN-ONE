@@ -101,4 +101,35 @@ public class LinkServiceImpl implements LinkService {
         }).toList();
     }
 
+    @Override
+    public LinkDto updateLink(LinkDto link) {
+        Link existingLink = linkRepository.findById(link.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Link not found with id: " + link.getId()));
+
+        existingLink.setTitle(link.getTitle());
+        existingLink.setLink(link.getLink());
+        existingLink.setDescription(link.getDescription());
+
+        Category category = categoryRepository.findByNameAndUser(link.getCategoryName(), existingLink.getMyUser())
+                .orElseGet(() -> {
+                    Category newCategory = new Category();
+                    newCategory.setName(link.getCategoryName());
+                    newCategory.setUser(existingLink.getMyUser());
+                    return categoryRepository.save(newCategory);
+                });
+
+        existingLink.setCategory(category);
+
+        Link updatedLink = linkRepository.save(existingLink);
+
+        LinkDto dto = new LinkDto();
+        dto.setId(updatedLink.getId());
+        dto.setTitle(updatedLink.getTitle());
+        dto.setLink(updatedLink.getLink());
+        dto.setDescription(updatedLink.getDescription());
+        dto.setCategoryName(updatedLink.getCategory().getName());
+        dto.setUsername(updatedLink.getMyUser().getUsername());
+
+        return dto;
+    }
 }

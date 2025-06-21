@@ -16,35 +16,40 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LinkController {
 
-    private final LinkServiceImpl enlaceService;
+    private final LinkServiceImpl linkService;
 
     // get all links
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     private List<LinkDto> getAllLinks(){
-        return enlaceService.getAllLinks();
+        return linkService.getAllLinks();
     }
 
     // add link
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<LinkDto> addLink(@RequestBody Link link) {
-       LinkDto LinkDto = enlaceService.addLink(link);
+       LinkDto LinkDto = linkService.addLink(link);
         return ResponseEntity.status(HttpStatus.CREATED).body(LinkDto);
     }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<LinkDto> removeLink(@PathVariable Long id) {
-        LinkDto deletedLink = enlaceService.removeLink(id);
+        LinkDto deletedLink = linkService.removeLink(id);
         return ResponseEntity.ok(deletedLink);
     }
 
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping()
     private List<LinkDto> getLinksActualUser(){
-        return enlaceService.getLinksActualUser();
+        return linkService.getLinksActualUser();
     }
 
-
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PatchMapping()
+    public ResponseEntity<LinkDto> updateLink(@RequestBody LinkDto link){
+        LinkDto linkDto = linkService.updateLink(link);
+        return ResponseEntity.ok(linkDto);
+    }
 }
