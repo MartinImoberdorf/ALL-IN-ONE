@@ -5,11 +5,6 @@
   Your personal link hub — store and access all your social media links in one place. Never forget where you saved them again!
 </p>
 
-<p align="center">
-  <a href="https://github.com/MartinImoberdorf/ALL-IN-ONE"><img src="https://img.shields.io/github/stars/MartinImoberdorf/ALL-IN-ONE?style=social" alt="GitHub stars"></a>
-  <a href="https://github.com/MartinImoberdorf/ALL-IN-ONE"><img src="https://img.shields.io/github/forks/MartinImoberdorf/ALL-IN-ONE?style=social" alt="GitHub forks"></a>
-</p>
-
 ---
 
 ## Overview
@@ -70,7 +65,7 @@
 git clone https://github.com/MartinImoberdorf/ALL-IN-ONE.git
 
 # Navigate to the project folder
-cd ALL-IN-ONE
+cd ALL-IN-ONE/MyAppBackend
 
 # Run the backend
 ./mvnw spring-boot:run
