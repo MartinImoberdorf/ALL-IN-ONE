@@ -40,6 +40,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable) // cross site request forgery
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/auth/register/user", "/auth/login", "/swagger-ui/**", "/v3/api-docs/**").permitAll();
+                    registry.requestMatchers("/error").permitAll();
                     registry.requestMatchers("/admin/**").hasRole("ADMIN");
                     registry.requestMatchers("/user/**").hasRole("USER");
                     registry.anyRequest().authenticated();

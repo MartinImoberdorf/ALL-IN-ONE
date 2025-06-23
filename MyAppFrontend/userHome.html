@@ -166,6 +166,12 @@
   </div>
 
   <script>
+    // En [userHome.html](http://_vscodecontentref_/1)
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+    if (token) {
+      sessionStorage.setItem('jwt', token);
+    }
 
     // SEGURIDAD POR PAGINA
     const jwt = sessionStorage.getItem("jwt");
