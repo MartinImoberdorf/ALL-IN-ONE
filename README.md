@@ -44,9 +44,9 @@
 ---
 
 ## Screenshots (Coming Soon)
-<!-- You can add images like this:
-![screenshot](screenshots/homepage.png)
--->
+<p align="center">
+  <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/home.png" alt="Home Screenshot" width="300"/>
+</p>
 
 ---
 
