@@ -2,7 +2,8 @@
 FROM gradle:8.5-jdk17-alpine AS build
 WORKDIR /app
 COPY . .
-RUN gradle build --no-daemon
+RUN ./gradlew build --no-daemon
+
 
 # Etapa 2: runtime
 FROM amazoncorretto:17-alpine-jdk
