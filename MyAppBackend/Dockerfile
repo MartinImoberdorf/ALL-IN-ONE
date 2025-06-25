@@ -1,14 +1,3 @@
-# Etapa 1: build
 FROM gradle:8.5-jdk17-alpine AS build
-WORKDIR /app
-RUN apk add --no-cache git
-COPY . .
-RUN chmod +x ./gradlew
-RUN ./gradlew build --no-daemon --stacktrace --info
-
-# Etapa 2: runtime
-FROM amazoncorretto:17-alpine-jdk
-WORKDIR /app
-COPY --from=build /app/build/libs/*.jar app.jar
-EXPOSE 10000
+COPY build/libs/MyAppBackend-0.0.1-SNAPSHOT.jar /app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
