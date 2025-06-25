@@ -4,7 +4,7 @@ WORKDIR /app
 RUN apk add --no-cache git
 COPY . .
 RUN chmod +x ./gradlew
-RUN ./gradlew build --no-daemon --build-cache
+RUN ./gradlew build --no-daemon --stacktrace
 
 # Etapa 2: runtime
 FROM amazoncorretto:17-alpine-jdk
