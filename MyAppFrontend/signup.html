@@ -6,48 +6,15 @@
   <title>Sign Up</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          keyframes: {
-            'fade-in-up': {
-              '0%': { opacity: '0', transform: 'translateY(40px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            'pulse-border': {
-              '0%, 100%': { boxShadow: '0 0 0 0 rgba(255,90,95,0.7)' },
-              '50%': { boxShadow: '0 0 0 12px rgba(255,90,95,0)' },
-            }
-          },
-          animation: {
-            'fade-in-up': 'fade-in-up 0.8s cubic-bezier(.4,0,.2,1) both',
-            'pulse-border': 'pulse-border 2s infinite',
-            'spin-slow': 'spin 8s linear infinite',
-          }
-        },
-      },
-    };
-  </script>
-  <style>
-    header {
-      transition: box-shadow 0.3s, background 0.3s;
-    }
-    header:hover {
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-      background: rgba(255,255,255,0.95);
-    }
-  </style>
+  <link rel="stylesheet" href="css/styleSignUp.css">
 </head>
 <body class="min-h-screen flex flex-col bg-gradient-to-br from-[#fff7f7] via-[#f7faff] to-[#f7f7ff] font-sans">
-
   <!-- HEADER -->
-  <header class="flex justify-between items-center bg-white/80 backdrop-blur-md rounded-full mt-6 mx-auto px-8 py-3 w-[95%] max-w-4xl shadow border border-gray-100 animate-fade-in-up">
+  <header class="flex justify-between items-center bg-white/80 backdrop-blur-md rounded-full mt-6 mx-auto px-3 sm:px-6 py-3 w-[95%] max-w-4xl shadow border border-gray-100 animate-fade-in-up">
     <div class="flex items-center space-x-2">
-      <span class="font-black text-xl tracking-tight text-[#FF5A5F] transition-colors duration-300 hover:text-black">ALL IN ONE</span>
+      <span class="ml-2 sm:ml-0 font-black text-xl tracking-tight text-[#FF5A5F] transition-colors duration-300 hover:text-black">ALL IN ONE</span>
     </div>
-    <nav class="flex items-center space-x-6 text-gray-700 text-base font-medium">
+    <nav class="flex items-center space-x-2 sm:space-x-6 text-gray-700 text-base font-medium">
       <a href="index.html" class="hover:text-[#FF5A5F] transition-colors duration-200 flex items-center" title="Home">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,24 +22,24 @@
         </svg>
       </a>
       <a href="login.html"
-        class="px-5 py-2 rounded-full border border-transparent bg-white/70 shadow-sm hover:bg-[#FF5A5F] hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        class="px-4 py-2 rounded-full border border-transparent bg-white/70 shadow-sm hover:bg-[#FF5A5F] hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold text-sm sm:text-base">
         Log in
       </a>
       <a href="signup.html"
-        class="px-5 py-2 rounded-full border border-[#FF5A5F] bg-[#FF5A5F] text-white shadow-sm hover:bg-white hover:text-[#FF5A5F] hover:border-[#FF5A5F] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        class="px-4 py-2 rounded-full border border-[#FF5A5F] bg-[#FF5A5F] text-white shadow-sm hover:bg-white hover:text-[#FF5A5F] hover:border-[#FF5A5F] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold text-sm sm:text-base">
         Sign up
       </a>
     </nav>
   </header>
 
   <!-- SIGNUP FORM -->
-  <main class="flex-grow flex flex-col items-center justify-center px-4 pt-8">
+  <main class="flex-grow flex flex-col items-center justify-center px-2 sm:px-4 pt-8">
     <div class="mt-8 mb-6 animate-fade-in-up" style="animation-delay:0.2s;animation-fill-mode:both;">
-      <div class="mx-auto w-20 h-20 rounded-2xl shadow-lg flex items-center justify-center bg-[#FF5A5F] animate-pulse-border relative overflow-hidden">
-        <img src="Imgs/Logo.png" alt="Logo" class="w-14 h-14 object-contain z-10" />
+      <div class="mx-auto w-16 h-16 sm:w-20 sm:h-20 rounded-2xl shadow-lg flex items-center justify-center bg-[#FF5A5F] animate-pulse-border relative overflow-hidden">
+        <img src="Imgs/Logo.png" alt="Logo" class="w-12 h-12 sm:w-16 sm:h-16 object-contain z-10" />
       </div>
     </div>
-    <div class="w-full max-w-sm bg-white/90 p-8 rounded-2xl shadow-lg animate-fade-in-up" style="animation-delay:0.3s;animation-fill-mode:both;">
+    <div class="w-full max-w-xs sm:max-w-sm md:max-w-md bg-white/90 p-4 sm:p-8 rounded-2xl shadow-lg animate-fade-in-up" style="animation-delay:0.3s;animation-fill-mode:both;">
       <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create your account</h2>
       <form id="signupForm" class="space-y-4" autocomplete="off">
         <div>
@@ -129,62 +96,11 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-white/80 text-center text-sm text-gray-500 py-4 shadow-inner mt-8">
+  <footer class="bg-white/80 text-center text-sm text-gray-500 py-4 shadow-inner mt-8 px-2">
     © 2025 <span class="font-semibold text-[#FF5A5F]">ALL IN ONE</span>. All rights reserved.
   </footer>
 
   <!-- SIGNUP SCRIPT -->
-  <script>
-    const signupForm = document.getElementById('signupForm');
-    const status = document.getElementById('signupStatus');
-
-    function validatePassword(password) {
-      // Min 8 chars, 1 uppercase, 1 lowercase, 1 number
-      return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/.test(password);
-    }
-
-    signupForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      status.textContent = '';
-      status.classList.remove('text-green-600', 'text-red-500');
-
-      const email = document.getElementById('email').value.trim();
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value;
-      const repeatPassword = document.getElementById('repeatPassword').value;
-
-      if (password !== repeatPassword) {
-        status.textContent = "Passwords do not match.";
-        status.classList.add('text-red-500');
-        return;
-      }
-      if (!validatePassword(password)) {
-        status.textContent = "Password must be at least 8 characters, include uppercase, lowercase, and a number.";
-        status.classList.add('text-red-500');
-        return;
-      }
-
-      try {
-        const res = await fetch('http://localhost:8080/auth/register/user', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, username, password })
-        });
-
-        if (res.ok) {
-          status.textContent = "Registration successful! You can now log in.";
-          status.classList.add('text-green-600');
-          setTimeout(() => window.location.href = "login.html", 1500);
-        } else {
-          const error = await res.text();
-          status.textContent = error || "Registration failed.";
-          status.classList.add('text-red-500');
-        }
-      } catch (err) {
-        status.textContent = "Network error. Please try again.";
-        status.classList.add('text-red-500');
-      }
-    });
-  </script>
+  <script src="js/scriptSignUp.js"></script>
 </body>
 </html>

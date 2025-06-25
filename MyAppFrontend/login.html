@@ -4,81 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
-
   <!-- Google Fonts: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-
+  <link rel="stylesheet" href="css/styleLogin.css">
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'sans-serif'] },
-          keyframes: {
-            'fade-in-up': {
-              '0%': { opacity: '0', transform: 'translateY(40px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            'pulse-border': {
-              '0%, 100%': { boxShadow: '0 0 0 0 rgba(255,90,95,0.7)' },
-              '50%': { boxShadow: '0 0 0 12px rgba(255,90,95,0)' },
-            }
-          },
-          animation: {
-            'fade-in-up': 'fade-in-up 0.8s cubic-bezier(.4,0,.2,1) both',
-            'pulse-border': 'pulse-border 2s infinite',
-            'spin-slow': 'spin 8s linear infinite',
-          }
-        },
-      },
-    };
-  </script>
-  <style>
-    header {
-      transition: box-shadow 0.3s, background 0.3s;
-    }
-    header:hover {
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-      background: rgba(255,255,255,0.95);
-    }
-  </style>
 </head>
 <body class="min-h-screen flex flex-col bg-gradient-to-br from-[#fff7f7] via-[#f7faff] to-[#f7f7ff] font-sans">
-
   <!-- HEADER -->
-  <header class="flex justify-between items-center bg-white/80 backdrop-blur-md rounded-full mt-6 mx-auto px-8 py-3 w-[95%] max-w-4xl shadow border border-gray-100 animate-fade-in-up">
+  <header class="flex justify-between items-center bg-white/80 backdrop-blur-md rounded-full mt-6 mx-auto px-2 sm:px-6 md:px-8 py-3 w-[98%] max-w-4xl shadow border border-gray-100 animate-fade-in-up">
     <div class="flex items-center space-x-2">
-      <span class="font-black text-xl tracking-tight text-[#FF5A5F] transition-colors duration-300 hover:text-black">ALL IN ONE</span>
+      <span class="ml-2 sm:ml-0 font-black text-xl tracking-tight text-[#FF5A5F] transition-colors duration-300 hover:text-black">ALL IN ONE</span>
     </div>
-    <nav class="flex items-center space-x-6 text-gray-700 text-base font-medium">
+    <nav class="flex items-center space-x-2 sm:space-x-4 md:space-x-6 text-gray-700 text-base font-medium">
       <a href="index.html" class="hover:text-[#FF5A5F] transition-colors duration-200 flex items-center" title="Home">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h3m10-11v10a1 1 0 01-1 1h-3m-6 0h6" />
         </svg>
       </a>
-    <nav class="flex items-center space-x-4 text-gray-700 text-base font-medium">
       <a href="login.html"
-        class="px-5 py-2 rounded-full border border-transparent bg-white/70 shadow-sm hover:bg-[#FF5A5F] hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        class="px-4 py-2 rounded-full border border-transparent bg-white/70 shadow-sm hover:bg-[#FF5A5F] hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold text-sm sm:text-base">
         Log in
       </a>
       <a href="signup.html"
-        class="px-5 py-2 rounded-full border border-[#FF5A5F] bg-[#FF5A5F] text-white shadow-sm hover:bg-white hover:text-[#FF5A5F] hover:border-[#FF5A5F] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        class="px-4 py-2 rounded-full border border-[#FF5A5F] bg-[#FF5A5F] text-white shadow-sm hover:bg-white hover:text-[#FF5A5F] hover:border-[#FF5A5F] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold text-sm sm:text-base">
         Sign up
       </a>
     </nav>
-    </nav>
   </header>
-
   <!-- LOGIN FORM -->
-  <main class="flex-grow flex flex-col items-center justify-center px-4 pt-8">
+  <main class="flex-grow flex flex-col items-center justify-center px-2 sm:px-4 pt-8">
     <div class="mt-8 mb-6 animate-fade-in-up" style="animation-delay:0.2s;animation-fill-mode:both;">
-      <div class="mx-auto w-20 h-20 rounded-2xl shadow-lg flex items-center justify-center bg-[#FF5A5F] animate-pulse-border relative overflow-hidden">
-        <img src="Imgs/Logo.png" alt="Logo" class="w-14 h-14 object-contain z-10" />
+      <div class="mx-auto w-16 h-16 sm:w-20 sm:h-20 rounded-2xl shadow-lg flex items-center justify-center bg-[#FF5A5F] animate-pulse-border relative overflow-hidden">
+        <img src="Imgs/Logo.png" alt="Logo" class="w-10 h-10 sm:w-14 sm:h-14 object-contain z-10" />
       </div>
     </div>
-    <div class="w-full max-w-sm bg-white/90 p-8 rounded-2xl shadow-lg animate-fade-in-up" style="animation-delay:0.3s;animation-fill-mode:both;">
+    <div class="w-full max-w-xs sm:max-w-sm md:max-w-md bg-white/90 p-6 sm:p-8 rounded-2xl shadow-lg animate-fade-in-up" style="animation-delay:0.3s;animation-fill-mode:both;">
       <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Welcome back</h2>
       <form id="loginForm" class="space-y-4">
         <div>
@@ -103,7 +65,7 @@
         </div>
         <button
           type="submit"
-          class="w-full bg-[#FF5A5F] text-white py-2 rounded-full font-semibold text-lg shadow hover:bg-black hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2"
+          class="w-full bg-[#FF5A5F] text-white py-2 rounded-full font-semibold text-base sm:text-lg shadow hover:bg-black hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2"
         >
           Sign In
         </button>
@@ -111,60 +73,10 @@
       </form>
     </div>
   </main>
-
   <!-- FOOTER -->
   <footer class="bg-white/80 text-center text-sm text-gray-500 py-4 shadow-inner mt-8">
     © 2025 <span class="font-semibold text-[#FF5A5F]">ALL IN ONE</span>. All rights reserved.
   </footer>
-
-  <!-- LOGIN SCRIPT -->
-<!-- LOGIN SCRIPT -->
-<script>
-
-  //
-  const loginForm = document.getElementById('loginForm');
-  const status = document.getElementById('loginStatus');
-
-  loginForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    try {
-      const res = await fetch('http://localhost:8080/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!res.ok) {
-        throw new Error('Invalid credentials');
-      }
-
-      const data = await res.json();
-      // Guarda el token JWT en memoria (sessionStorage)
-      if (data.token) {
-        sessionStorage.setItem('jwt', data.token);
-        status.textContent = 'Login successful';
-        status.classList.remove('text-red-500');
-        status.classList.add('text-green-600');
-        // Redirige pasando el token por query string
-        window.location.href = "userHome.html";
-      } else {
-        throw new Error('No token received');
-      }
-    } catch (err) {
-      status.textContent = err.message;
-      status.classList.remove('text-green-600');
-      status.classList.add('text-red-500');
-    }
-  });
-
-  
-</script>
-
+  <script src="js/scriptLogin.js"></script>
 </body>
 </html>

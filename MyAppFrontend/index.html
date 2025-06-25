@@ -11,40 +11,38 @@
 <body class="min-h-screen bg-gradient-to-br from-[#fff7f7] via-[#f7faff] to-[#f7f7ff] font-sans flex flex-col">
 
   <!-- HEADER -->
-  <header class="flex justify-between items-center bg-white/80 backdrop-blur-md rounded-full mt-6 mx-auto px-8 py-3 w-[95%] max-w-4xl shadow border border-gray-100 animate-fade-in-up">
+  <header class="flex justify-between items-center bg-white/80 backdrop-blur-md rounded-full mt-6 mx-auto px-3 sm:px-6 py-3 w-[98%] max-w-4xl shadow border border-gray-100 animate-fade-in-up">
     <div class="flex items-center space-x-2">
-      <!-- Logo SVG (puedes cambiarlo por el tuyo) -->
-      <span class="font-black text-xl tracking-tight text-[#FF5A5F] transition-colors duration-300 hover:text-black">ALL IN ONE</span>
+      <span class="ml-2 sm:ml-0 font-black text-xl tracking-tight text-[#FF5A5F] transition-colors duration-300 hover:text-black">ALL IN ONE</span>
     </div>
-    <nav class="flex items-center space-x-4 text-gray-700 text-base font-medium">
+    <nav class="flex items-center space-x-2 sm:space-x-4 text-gray-700 text-base font-medium">
       <a href="login.html"
-        class="px-5 py-2 rounded-full border border-transparent bg-white/70 shadow-sm hover:bg-[#FF5A5F] hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        class="px-5 py-2 sm:px-6 sm:py-2 rounded-full border border-transparent bg-white/70 shadow-sm hover:bg-[#FF5A5F] hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
         Log in
       </a>
       <a href="signup.html"
-        class="px-5 py-2 rounded-full border border-[#FF5A5F] bg-[#FF5A5F] text-white shadow-sm hover:bg-white hover:text-[#FF5A5F] hover:border-[#FF5A5F] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
+        class="px-5 py-2 sm:px-6 sm:py-2 rounded-full border border-[#FF5A5F] bg-[#FF5A5F] text-white shadow-sm hover:bg-white hover:text-[#FF5A5F] hover:border-[#FF5A5F] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2 font-semibold">
         Sign up
       </a>
     </nav>
   </header>
 
   <!-- MAIN CONTENT -->
-  <main class="flex flex-col items-center justify-center flex-grow px-4 pt-8">
-    <!-- Logo central (ahora usando tu imagen) -->
+  <main class="flex flex-col items-center justify-center flex-grow px-2 sm:px-4 pt-8">
     <div class="mt-8 mb-6 animate-fade-in-up" style="animation-delay:0.2s;animation-fill-mode:both;">
-      <div class="mx-auto w-24 h-24 rounded-2xl shadow-lg flex items-center justify-center bg-[#FF5A5F] animate-pulse-border relative overflow-hidden">
-        <img src="Imgs/Logo.png" alt="Logo" class="w-20 h-20 object-contain z-10" />
+      <div class="mx-auto w-16 h-16 sm:w-24 sm:h-24 rounded-2xl shadow-lg flex items-center justify-center bg-[#FF5A5F] animate-pulse-border relative overflow-hidden">
+        <img src="Imgs/Logo.png" alt="Logo" class="w-14 h-14 sm:w-20 sm:h-20 object-contain z-10" />
       </div>
     </div>
-    <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 text-center leading-tight mb-4 animate-fade-in-up" style="animation-delay:0.3s;animation-fill-mode:both;">
+    <h1 class="text-2xl sm:text-4xl md:text-6xl font-extrabold text-gray-900 text-center leading-tight mb-4 animate-fade-in-up" style="animation-delay:0.3s;animation-fill-mode:both;">
       Keep All Your Videos and Links<br class="hidden md:block"/> Ready to Share—Anywhere, Anytime
     </h1>
-    <p class="text-gray-500 text-lg text-center mb-8 max-w-xl animate-fade-in-up" style="animation-delay:0.4s;animation-fill-mode:both;">
+    <p class="text-gray-500 text-base sm:text-lg text-center mb-8 max-w-xl animate-fade-in-up" style="animation-delay:0.4s;animation-fill-mode:both;">
       Save and organize all your favorite videos and links in one place —<br class="hidden md:block"/> Access your content faster than ever.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 mb-10 animate-fade-in-up" style="animation-delay:0.5s;animation-fill-mode:both;">
       <a href="signup.html" class="bg-black text-white px-8 py-3 rounded-full font-semibold text-lg shadow hover:bg-[#FF5A5F] hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#FF5A5F] focus:ring-offset-2">Join for free</a>
-      <!-- ...existing code... -->
+      <!-- ...otros botones si tienes... -->
     </div>
   </main>
   <script src="js/scriptIndex.js"></script>
