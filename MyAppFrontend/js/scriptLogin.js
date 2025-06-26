@@ -32,7 +32,7 @@ const username = document.getElementById('username').value;
 const password = document.getElementById('password').value;
 
 try {
-    const res = await fetch('http://localhost:8080/auth/login', {
+    const res = await fetch('https://all-in-one-80bf.onrender.com/auth/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',

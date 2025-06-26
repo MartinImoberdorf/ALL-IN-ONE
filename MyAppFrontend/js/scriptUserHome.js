@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
     }
     try {
-    const res = await fetch('http://localhost:8080/auth/currentUser', {
+    const res = await fetch('https://all-in-one-80bf.onrender.com/auth/currentUser', {
         method: 'GET',
         headers: {
         'Authorization': `Bearer ${jwt}`
@@ -103,7 +103,7 @@ async function loadLinks() {
 const jwt = sessionStorage.getItem('jwt');
 if (!jwt) return;
 try {
-    const res = await fetch('http://localhost:8080/link', {
+    const res = await fetch('https://all-in-one-80bf.onrender.com/link', {
     headers: { 'Authorization': `Bearer ${jwt}` }
     });
     if (!res.ok) throw new Error("No se pudieron obtener los links");
@@ -176,7 +176,7 @@ try {
         categoryName: document.getElementById('editCategory').value, // <--- CAMBIA AQUÍ
         username: link.username
         };
-        const res = await fetch('http://localhost:8080/link', {
+        const res = await fetch('https://all-in-one-80bf.onrender.com/link', {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -200,7 +200,7 @@ try {
         showCustomConfirm(async () => {
         try {
             const jwt = sessionStorage.getItem('jwt');
-            const res = await fetch(`http://localhost:8080/link/${link.id}`, {
+            const res = await fetch(`https://all-in-one-80bf.onrender.com/link/${link.id}`, {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${jwt}` }
             });
@@ -253,7 +253,7 @@ async function addLink() {
     category: { name: category }
     };
 
-    const response = await fetch('http://localhost:8080/link', {
+    const response = await fetch('https://all-in-one-80bf.onrender.com/link', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
@@ -280,7 +280,7 @@ async function loadCategories() {
     const jwt = sessionStorage.getItem('jwt');
     if (!jwt) return;
     try {
-    const res = await fetch('http://localhost:8080/category/currentUser', {
+    const res = await fetch('https://all-in-one-80bf.onrender.com/category/currentUser', {
         headers: { 'Authorization': `Bearer ${jwt}` }
     });
     if (!res.ok) throw new Error("No se pudieron obtener las categorías");
