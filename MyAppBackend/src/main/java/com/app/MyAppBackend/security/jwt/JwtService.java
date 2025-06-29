@@ -3,6 +3,7 @@ package com.app.MyAppBackend.security.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +15,23 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class JwtService {
-    public static final String SECRET ="1CFA1E7EF6B2718A15A1148BC3012FD98F987679F4FF0B26184919C1824602255EF27CF02FCB4E0698438B98F97FFE3BD46C019A14583865D9ECD2E72E3FE1CB";
-    public static final long VALIDITY = TimeUnit.MINUTES.toMillis(30);
+    @Value("${jwt.secret}")
+    private String secret;
+
+    @Value("${jwt.validity}")
+    private long validity;
 
     public String generateToken(UserDetails userDetails){
         return Jwts.builder()
                 .subject(userDetails.getUsername())
                 .issuedAt(Date.from(Instant.now()))
-                .expiration(Date.from(Instant.now().plusMillis(VALIDITY)))
+                .expiration(Date.from(Instant.now().plusMillis(validity)))
                 .signWith(generateKey())
                 .compact();
     }
 
     private SecretKey generateKey(){
-        byte [] decodeKey = Base64.getDecoder().decode(SECRET);
+        byte [] decodeKey = Base64.getDecoder().decode(secret);
         return Keys.hmacShaKeyFor(decodeKey);
     }
 
