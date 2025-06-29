@@ -45,7 +45,9 @@
 
 ## Screenshots (Coming Soon)
 <p align="center">
-  <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/home.png" alt="Home Screenshot" width="300"/>
+    <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/home.png" alt="Home Screenshot" width="300" height="600"/>
+    <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/login.PNG" alt="Home Screenshot" width="300" height="600"/>
+    <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/UserHome.PNG" alt="Home Screenshot" width="300" height="600"/>
 </p>
 
 ---
