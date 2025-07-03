@@ -43,7 +43,7 @@
 
 ---
 
-## Screenshots (Coming Soon)
+## Screenshots
 <div style="display: flex; justify-content: center; gap: 10px;">
   <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/home.png" alt="Home Screenshot" width="300" height="600"/>
   <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/login.PNG" alt="Login Screenshot" width="300" height="600"/>
