@@ -12,6 +12,20 @@
 **ALL IN ONE** is a personal tool that allows you to gather all your social media and link profiles in one simple and clean interface. Stop searching across platforms or digging through notes to find your usernames — it’s all here.
 
 ---
+## 🌐 Deployment Info
+The application is currently deployed and available at:
+👉 https://alli1.netlify.app/
+
+Deployment Details
+Backend: Deployed on Render (Free tier – may sleep when inactive)
+
+Database: Hosted on Neon (PostgreSQL)
+
+Frontend: Deployed on Netlify
+
+<sub> ⚠️ Note: Since the backend is hosted on Render’s free plan, it may go to sleep after inactivity. The first request might take a few seconds. It's also hosted in the US, so you might experience slight latency depending on your location.</sub>
+
+---
 
 ## Features
 
@@ -38,17 +52,18 @@
 
 ### Frontend
 
-- **Vanilla HTML, CSS & JS**
+- Vanilla HTML, CSS & JS
 - Simple and functional UI (to be improved in future versions)
+- I don't use frameworks because the main focus of the project is on the backend
 
 ---
 
 ## Screenshots
-<div style="display: flex; justify-content: center; gap: 10px;">
-  <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/home.png" alt="Home Screenshot" width="300" height="600"/>
-  <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/login.PNG" alt="Login Screenshot" width="300" height="600"/>
-  <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/UserHome.PNG" alt="User Home Screenshot" width="300" height="600"/>
-</div>
+<p align="center">
+  <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/home.png" alt="Home Screenshot" width="300" height="630"/>
+  <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/SignUp.PNG" alt="Sign Up Screenshot" width="300" height="630"/>
+  <img src="https://github.com/MartinImoberdorf/ALL-IN-ONE/blob/main/Imgs/UserHome.PNG" alt="UserHome Screenshot" width="300" height="630"/>
+</p>
 
 
 ---
