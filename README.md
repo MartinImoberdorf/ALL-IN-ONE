@@ -39,7 +39,7 @@ Frontend: Deployed on Netlify
 
 ## ⚙️ Tech Stack
 
-### Backend (Monolith with Spring Boot)
+### Backend (Layered Monolith with Spring Boot)
 
 - **Spring Web** – RESTful API endpoints
 - **Spring Data JPA** – ORM with Hibernate
